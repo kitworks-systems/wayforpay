@@ -13,7 +13,7 @@ class Api:
 
     def _query(self, transaction_type: TransactionType, params: dict):
         params = FrozenParams(self.merchant_account, self.merchant_key, transaction_type, params)
-        response = requests.post(API_URL, json=params)
+        response = requests.post(API_URL, json=dict(params))
         return response.json()
 
     settle = partialmethod(_query, TransactionType.SETTLE)
